@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Akka! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* Full Screen Pages Container */
+        .notebook {
+            width: 90%;
+            max-width: 450px;
+            height: 600px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease, z-index 0s linear 0.4s;
+            backface-visibility: hidden;
+        }
+
+        /* Page States with 3D Flip Effects */
+        .page.active {
+            transform: rotateY(0deg) translateZ(10px);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .page.past {
+            transform: rotateY(-180deg) translateX(-50px) translateZ(0px);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .page.future {
+            transform: rotateY(180deg) translateX(50px) translateZ(0px);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .profile-img-container {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #ff477e, #ff85a2);
+            box-shadow: 0 8px 15px rgba(255, 71, 126, 0.3);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        .cake-emoji {
+            font-size: 50px;
+            animation: bounce 2s infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #ff7096;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #a3e635;
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            width: 100%;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 5px solid #ff477e;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .code-comment { color: #718096; }
+        .code-keyword { color: #f638dc; }
+        .code-string { color: #38bdf8; }
+
+        p.kannada-text {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .btn-nav {
+            background: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+        }
+
+        .btn-nav:hover {
+            background: #ff7096;
+            transform: scale(1.05);
+        }
+
+        .balloon {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.6;
+            animation: floatUp 5s linear infinite;
+            bottom: -50px;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animations -->
+    <div class="balloon" style="left: 7%; animation-delay: 0s; animation-duration: 6s;">🎈</div>
+    <div class="balloon" style="left: 25%; animation-delay: 2s; animation-duration: 5s;">✨</div>
+    <div class="balloon" style="left: 50%; animation-delay: 4s; animation-duration: 7s;">🎈</div>
+    <div class="balloon" style="left: 78%; animation-delay: 1s; animation-duration: 5.5s;">🎉</div>
+    <div class="balloon" style="left: 90%; animation-delay: 3s; animation-duration: 6.5s;">🎈</div>
+
+    <div class="notebook">
+        
+        <!-- PAGE 1: Welcome & Photo -->
+        <div class="page active" id="page1">
+            <div class="profile-img-container">
+                <img src="akka.jpg" alt="Akka's Photo" class="profile-img">
+            </div>
+            <h1>Happy Birthday, Akka! 💖</h1>
+            <p class="kannada-text">ಇವತ್ತು ನಮ್ಮ ಲೈಫ್‌ನ ಅತ್ಯಂತ ಸ್ಪೆಷಲ್ ಅಡ್ಮಿನ್ ಹುಟ್ಟುಹಬ್ಬ! ನಿಮಗಾಗಿ ಒಂದು ಸಣ್ಣ ಸರ್ಪ್ರೈಸ್ ಇಲ್ಲಿದೆ...</p>
+            <button class="btn-nav" onclick="nextPage(2)">Next Page ➡️</button>
+        </div>
+
+        <!-- PAGE 2: The CS Code Secret -->
+        <div class="page future" id="page2">
+            <h2>The Secret Code 💻</h2>
+            <div class="code-block">
+                <span class="code-comment">// A permanent loop for you</span><br>
+                <span class="code-keyword">while</span>(true) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Happiness = <span class="code-string">"Infinite"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Errors = <span class="code-string">"0"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Success.compile();<br>
+                }
+            </div>
+            <p class="kannada-text">ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ವಿದ್ಯಾರ್ಥಿಯಾಗಿ ನನ್ನ ಪ್ರಾರ್ಥನೆ ಒಂದೇ... ನಿಮ್ಮ ಬದುಕಿನ ಪ್ರೋಗ್ರಾಂನಲ್ಲಿ ಯಾವುದೇ ಬಗ್ಸ್ ಇಲ್ಲದೆ ಯಶಸ್ಸು ಸಿಗಲಿ!</p>
+            <button class="btn-nav" onclick="nextPage(3)">Next Page ➡️</button>
+        </div>
+
+        <!-- PAGE 3: The Celebration Wish -->
+        <div class="page future" id="page3">
+            <div class="cake-emoji">🎂</div>
+            <h2>Happy Birthday, Akka! 🎉</h2>
+            <p class="kannada-text">
+                ನನ್ನ ತರಲೆಗಳನ್ನೆಲ್ಲಾ ಸಹಿಸಿಕೊಂಡು, ಲೈಫ್‌ಗೆ ಸರಿಯಾದ ಔಟ್‌ಪುಟ್ ಕೊಡುವ ಬೆಸ್ಟ್ ಕಂಪೈಲರ್ ಮತ್ತು ಗೈಡ್ ನೀನು. ಈ ವರ್ಷ ನೀವು ಅಂದುಕೊಂಡಿದ್ದೆಲ್ಲಾ ಈಡೇರಲಿ! ❤️
+            </p>
+            <button class="btn-nav" onclick="nextPage(1)">Start Again 🔄</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            const p1 = document.getElementById('page1');
+            const p2 = document.getElementById('page2');
+            const p3 = document.getElementById('page3');
+
+            p1.className = 'page';
+            p2.className = 'page';
+            p3.className = 'page';
+
+            if (pageNumber === 1) {
+                p1.classList.add('active');
+                p2.classList.add('future');
+                p3.classList.add('future');
+            } else if (pageNumber === 2) {
+                p1.classList.add('past');
+                p2.classList.add('active');
+                p3.classList.add('future');
+            } else if (pageNumber === 3) {
+                p1.classList.add('past');
+                p2.classList.add('past');
+                p3.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
